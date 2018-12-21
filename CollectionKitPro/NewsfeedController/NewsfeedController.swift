@@ -10,10 +10,11 @@
 // MARK: Notification Names
 
 let notificationNameSetSection0DataSource = Notification.Name(rawValue: "setSection0DataSource")
+let notificationNameSetSection1DataSource = Notification.Name(rawValue: "setSection1DataSource")
 
 import CollectionKit
 
-class NewsfeedController: CollectionViewController, InstaPostCellDelegate, InstaPostsHeaderCellDelegate {
+class NewsfeedController: CollectionViewController, InstaPostCellDelegate, InstaPostsHeaderCellDelegate, FacebookPostCellDelegate, FacebookPostsHeaderCellDelegate {
     
     // MARK: -
     // MARK: InstaPostCellDelegate
@@ -29,9 +30,27 @@ class NewsfeedController: CollectionViewController, InstaPostCellDelegate, Insta
     }
     
     // MARK: -
+    // MARK: FacebookPostCellDelegate
+    
+    func didTapFacebookPostCell(view: UIView, data: FacebookPost, index: Int) {
+        
+    }
+    
+    // MARK: FacebookPostsHeaderCellDelegate
+    
+    func didTapFacebookPostsHeaderCell(view: UIView, data: FacebookUser, index: Int) {
+        
+    }
+    
+    // MARK: -
     // MARK: Cell Size
     lazy var section0CellWidth: CGFloat = (self.view.frame.width - NewsfeedControllerLayout.ComposedProvider.leftEdgeInset - NewsfeedControllerLayout.ComposedProvider.rigthEdgeInset - NewsfeedControllerLayout.Section0.CellProvider.leftEdgeInset - NewsfeedControllerLayout.Section0.CellProvider.rigthEdgeInset - (NewsfeedControllerLayout.Section0.numberOfCellsPerWidth - 1) * NewsfeedControllerLayout.Section0.CellProvider.spacing) / NewsfeedControllerLayout.Section0.numberOfCellsPerWidth
     lazy var section0CellHeight: CGFloat = section0CellWidth
+    
+    // MARK: -
+    // MARK: Cell Size for Section 1
+    lazy var section1CellWidth: CGFloat = (self.view.frame.width - NewsfeedControllerLayout.ComposedProvider.leftEdgeInset - NewsfeedControllerLayout.ComposedProvider.rigthEdgeInset - NewsfeedControllerLayout.Section1.CellProvider.leftEdgeInset - NewsfeedControllerLayout.Section1.CellProvider.rigthEdgeInset - (NewsfeedControllerLayout.Section1.numberOfCellsPerWidth - 1) * NewsfeedControllerLayout.Section1.CellProvider.spacing) / NewsfeedControllerLayout.Section1.numberOfCellsPerWidth
+    lazy var section1CellHeight: CGFloat = section1CellWidth
     
     // MARK: -
     // MARK: Animator
@@ -69,6 +88,12 @@ class NewsfeedController: CollectionViewController, InstaPostCellDelegate, Insta
     lazy var section0ProviderInset = UIEdgeInsets(top: NewsfeedControllerLayout.Section0.CellProvider.topEdgeInset, left: NewsfeedControllerLayout.Section0.CellProvider.leftEdgeInset, bottom: NewsfeedControllerLayout.Section0.CellProvider.bottomEdgeInset, right: NewsfeedControllerLayout.Section0.CellProvider.rigthEdgeInset)
     lazy var section0ProviderLayout = FlowLayout(spacing: NewsfeedControllerLayout.Section0.CellProvider.spacing, justifyContent: .start).inset(by: section0ProviderInset)//.transposed()
     
+    // MARK: -
+    // MARK: Section 1 Provider Layout
+    
+    lazy var section1ProviderInset = UIEdgeInsets(top: NewsfeedControllerLayout.Section1.CellProvider.topEdgeInset, left: NewsfeedControllerLayout.Section1.CellProvider.leftEdgeInset, bottom: NewsfeedControllerLayout.Section1.CellProvider.bottomEdgeInset, right: NewsfeedControllerLayout.Section1.CellProvider.rigthEdgeInset)
+    lazy var section1ProviderLayout = FlowLayout(spacing: NewsfeedControllerLayout.Section1.CellProvider.spacing, justifyContent: .start).inset(by: section1ProviderInset)//.transposed()
+    
     /*
      // you can assign a layout to any provider
      
@@ -100,6 +125,18 @@ class NewsfeedController: CollectionViewController, InstaPostCellDelegate, Insta
     }
     
     // MARK: -
+    // MARK: Section 1 Provider Elements
+    
+    lazy var section1DataSource = ArrayDataSource(data: FacebookPostsManager.fetchFacebookPosts() ?? []) // may be [] upon initialization because purchases may not be ready; see `setupNotificationCenterObservers` below
+    lazy var section1ViewSource = ClosureViewSource(viewUpdater: { (view: FacebookPostCell, data: FacebookPost, index: Int) in
+        view.delegate = self
+        view.populate(view: view, data: data, index: index)
+    })
+    lazy var section1SizeSource = { (index: Int, data: FacebookPost, collectionSize: CGSize) -> CGSize in
+        return CGSize(width: self.section1CellWidth, height: self.section1CellHeight)
+    }
+    
+    // MARK: -
     // MARK: Life Cycle
     
     override func viewDidLoad() {
@@ -127,6 +164,10 @@ class NewsfeedController: CollectionViewController, InstaPostCellDelegate, Insta
         NotificationCenter.default.addObserver(forName: notificationNameSetSection0DataSource, object: nil, queue: OperationQueue.main) { (notification) in
             self.section0DataSource.data = InstaPostsManager.fetchInstaPosts() ?? []
         }
+        
+        NotificationCenter.default.addObserver(forName: notificationNameSetSection1DataSource, object: nil, queue: OperationQueue.main) { (notification) in
+            self.section1DataSource.data = FacebookPostsManager.fetchFacebookPosts() ?? []
+        }
     }
     
     fileprivate func setupViews() {
@@ -149,8 +190,18 @@ class NewsfeedController: CollectionViewController, InstaPostCellDelegate, Insta
         // adding a layout
         section0Provider.layout = section0ProviderLayout
         
+        // create a provider for the section 1
+        let section1Provider = BasicProvider(
+            dataSource: section1DataSource,
+            viewSource: section1ViewSource,
+            sizeSource: section1SizeSource
+        )
+        
+        // adding a layout
+        section1Provider.layout = section1ProviderLayout
+        
         // create a sections provider with all the setcions
-        let sectionsProvider = ComposedProvider(sections: [section0Provider])
+        let sectionsProvider = ComposedProvider(sections: [section0Provider, section1Provider])
         
         // create a composed header provider so we may add the `headerViewSource` and `headerSizeSource` and `sections`
         let composedProvider = ComposedHeaderProvider(

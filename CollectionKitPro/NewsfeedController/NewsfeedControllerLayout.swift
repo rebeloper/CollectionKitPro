@@ -46,4 +46,20 @@ struct NewsfeedControllerLayout {
         
     }
     
+    // MARK: -
+    // MARK: Section 1 Provider Layout Constants
+    
+    struct Section1 {
+        static let numberOfCellsPerWidth: CGFloat = 2
+        
+        struct CellProvider {
+            static let spacing: CGFloat = 1
+            static let topEdgeInset: CGFloat = 0
+            static let leftEdgeInset: CGFloat = 0
+            static let bottomEdgeInset: CGFloat = 0
+            static let rigthEdgeInset: CGFloat = 0
+        }
+        
+    }
+    
 }

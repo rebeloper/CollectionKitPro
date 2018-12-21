@@ -20,6 +20,13 @@
 		C90CD50E21CBF05700BA1CB7 /* InstaPostsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90CD50A21CBF05700BA1CB7 /* InstaPostsHeaderCell.swift */; };
 		C90CD50F21CBF05700BA1CB7 /* InstaPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90CD50B21CBF05700BA1CB7 /* InstaPostCell.swift */; };
 		C90CD51021CBF05700BA1CB7 /* InstaPostsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90CD50C21CBF05700BA1CB7 /* InstaPostsModels.swift */; };
+		C90CD53921CCFBBD00BA1CB7 /* FacebookPostsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90CD53521CCFBBD00BA1CB7 /* FacebookPostsManager.swift */; };
+		C90CD53A21CCFBBD00BA1CB7 /* FacebookPostsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90CD53621CCFBBD00BA1CB7 /* FacebookPostsHeaderCell.swift */; };
+		C90CD53B21CCFBBD00BA1CB7 /* FacebookPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90CD53721CCFBBD00BA1CB7 /* FacebookPostCell.swift */; };
+		C90CD53C21CCFBBD00BA1CB7 /* FacebookPostsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90CD53821CCFBBD00BA1CB7 /* FacebookPostsModels.swift */; };
+		C90CD54921CCFC6800BA1CB7 /* FlatUIColorsSwift.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C90CD54621CCFC6800BA1CB7 /* FlatUIColorsSwift.xcassets */; };
+		C90CD54A21CCFC6800BA1CB7 /* Palette Creators.rtf in Resources */ = {isa = PBXBuildFile; fileRef = C90CD54721CCFC6800BA1CB7 /* Palette Creators.rtf */; };
+		C90CD54B21CCFC6800BA1CB7 /* FlatUIColorsSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90CD54821CCFC6800BA1CB7 /* FlatUIColorsSwift.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +47,13 @@
 		C90CD50A21CBF05700BA1CB7 /* InstaPostsHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstaPostsHeaderCell.swift; sourceTree = "<group>"; };
 		C90CD50B21CBF05700BA1CB7 /* InstaPostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstaPostCell.swift; sourceTree = "<group>"; };
 		C90CD50C21CBF05700BA1CB7 /* InstaPostsModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstaPostsModels.swift; sourceTree = "<group>"; };
+		C90CD53521CCFBBD00BA1CB7 /* FacebookPostsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookPostsManager.swift; sourceTree = "<group>"; };
+		C90CD53621CCFBBD00BA1CB7 /* FacebookPostsHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookPostsHeaderCell.swift; sourceTree = "<group>"; };
+		C90CD53721CCFBBD00BA1CB7 /* FacebookPostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookPostCell.swift; sourceTree = "<group>"; };
+		C90CD53821CCFBBD00BA1CB7 /* FacebookPostsModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookPostsModels.swift; sourceTree = "<group>"; };
+		C90CD54621CCFC6800BA1CB7 /* FlatUIColorsSwift.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = FlatUIColorsSwift.xcassets; sourceTree = "<group>"; };
+		C90CD54721CCFC6800BA1CB7 /* Palette Creators.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = "Palette Creators.rtf"; sourceTree = "<group>"; };
+		C90CD54821CCFC6800BA1CB7 /* FlatUIColorsSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlatUIColorsSwift.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +106,7 @@
 		C90CD4EC21CBEE2D00BA1CB7 /* CollectionKitPro */ = {
 			isa = PBXGroup;
 			children = (
+				C90CD54521CCFC6800BA1CB7 /* FlatUIColorsSwift */,
 				C90CD4ED21CBEE2D00BA1CB7 /* AppDelegate.swift */,
 				C90CD4F121CBEE2E00BA1CB7 /* Assets.xcassets */,
 				C90CD4F321CBEE2E00BA1CB7 /* LaunchScreen.storyboard */,
@@ -117,12 +132,13 @@
 			children = (
 				C90CD50321CBEFBF00BA1CB7 /* NewsfeedControllerLayout.swift */,
 				C90CD50421CBEFBF00BA1CB7 /* NewsfeedController.swift */,
-				C90CD51121CBF05E00BA1CB7 /* InstPostsSection */,
+				C90CD51121CBF05E00BA1CB7 /* InstaPostsSection */,
+				C90CD53D21CCFBC500BA1CB7 /* FacebookPostsSection */,
 			);
 			path = NewsfeedController;
 			sourceTree = "<group>";
 		};
-		C90CD51121CBF05E00BA1CB7 /* InstPostsSection */ = {
+		C90CD51121CBF05E00BA1CB7 /* InstaPostsSection */ = {
 			isa = PBXGroup;
 			children = (
 				C90CD50921CBF05700BA1CB7 /* InstaPostsManager.swift */,
@@ -130,7 +146,28 @@
 				C90CD50B21CBF05700BA1CB7 /* InstaPostCell.swift */,
 				C90CD50C21CBF05700BA1CB7 /* InstaPostsModels.swift */,
 			);
-			path = InstPostsSection;
+			path = InstaPostsSection;
+			sourceTree = "<group>";
+		};
+		C90CD53D21CCFBC500BA1CB7 /* FacebookPostsSection */ = {
+			isa = PBXGroup;
+			children = (
+				C90CD53521CCFBBD00BA1CB7 /* FacebookPostsManager.swift */,
+				C90CD53621CCFBBD00BA1CB7 /* FacebookPostsHeaderCell.swift */,
+				C90CD53721CCFBBD00BA1CB7 /* FacebookPostCell.swift */,
+				C90CD53821CCFBBD00BA1CB7 /* FacebookPostsModels.swift */,
+			);
+			path = FacebookPostsSection;
+			sourceTree = "<group>";
+		};
+		C90CD54521CCFC6800BA1CB7 /* FlatUIColorsSwift */ = {
+			isa = PBXGroup;
+			children = (
+				C90CD54621CCFC6800BA1CB7 /* FlatUIColorsSwift.xcassets */,
+				C90CD54721CCFC6800BA1CB7 /* Palette Creators.rtf */,
+				C90CD54821CCFC6800BA1CB7 /* FlatUIColorsSwift.swift */,
+			);
+			path = FlatUIColorsSwift;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -193,8 +230,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C90CD54A21CCFC6800BA1CB7 /* Palette Creators.rtf in Resources */,
 				C90CD4F221CBEE2E00BA1CB7 /* Assets.xcassets in Resources */,
 				C90CD4F521CBEE2E00BA1CB7 /* LaunchScreen.storyboard in Resources */,
+				C90CD54921CCFC6800BA1CB7 /* FlatUIColorsSwift.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,9 +293,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C90CD53B21CCFBBD00BA1CB7 /* FacebookPostCell.swift in Sources */,
+				C90CD53C21CCFBBD00BA1CB7 /* FacebookPostsModels.swift in Sources */,
 				C90CD50121CBEF5C00BA1CB7 /* CollectionViewController.swift in Sources */,
 				C90CD4FF21CBEF5C00BA1CB7 /* CollectionKitKeys.swift in Sources */,
+				C90CD53921CCFBBD00BA1CB7 /* FacebookPostsManager.swift in Sources */,
 				C90CD50D21CBF05700BA1CB7 /* InstaPostsManager.swift in Sources */,
+				C90CD53A21CCFBBD00BA1CB7 /* FacebookPostsHeaderCell.swift in Sources */,
 				C90CD51021CBF05700BA1CB7 /* InstaPostsModels.swift in Sources */,
 				C90CD50521CBEFBF00BA1CB7 /* NewsfeedControllerLayout.swift in Sources */,
 				C90CD50021CBEF5C00BA1CB7 /* DocumentSerializable.swift in Sources */,
@@ -264,6 +307,7 @@
 				C90CD50E21CBF05700BA1CB7 /* InstaPostsHeaderCell.swift in Sources */,
 				C90CD4EE21CBEE2D00BA1CB7 /* AppDelegate.swift in Sources */,
 				C90CD50F21CBF05700BA1CB7 /* InstaPostCell.swift in Sources */,
+				C90CD54B21CCFC6800BA1CB7 /* FlatUIColorsSwift.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
