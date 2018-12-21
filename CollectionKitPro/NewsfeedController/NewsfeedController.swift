@@ -208,8 +208,14 @@ class NewsfeedController: CollectionViewController, InstaPostCellDelegate, Insta
             headerViewSource: ClosureViewSource(
                 viewUpdater: { (view: InstaPostsHeaderCell, viewData, index) in
                     view.delegate = self
-                    guard let data = InstaPostsManager.fetchInstaUser() else { return }
-                    view.populate(view: view, viewData: viewData, data: data, index: index)
+                    if index == 0 {
+                        guard let data = InstaPostsManager.fetchInstaUser() else { return }
+                        view.populate(view: view, viewData: viewData, data: data, index: index)
+                    } else if index == 1 {
+                        guard let data = FacebookPostsManager.fetchFacebookUser() else { return }
+//                        view.populate(view: view, viewData: viewData, data: data, index: index)
+                    }
+                    
             }),
             headerSizeSource: { (index, data, maxSize) -> CGSize in
                 return CGSize(width: maxSize.width, height: NewsfeedControllerLayout.headerCellHeight)
